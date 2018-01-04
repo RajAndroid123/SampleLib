@@ -1,5 +1,7 @@
 package com.example.mylibrary;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,8 +11,8 @@ import java.io.InputStreamReader;
  */
 
 public class LogDebugger {
-    public static String logDebug(){
-        String s = null;
+    public static void logDebug(){
+        String logDebug = null;
 
         try {
             Process process = Runtime.getRuntime().exec("logcat -d");
@@ -22,14 +24,15 @@ public class LogDebugger {
             while ((line = bufferedReader.readLine()) != null) {
                 log.append(line);
             }
-            s =log.toString();
+            logDebug =log.toString();
+            Log.d("LOGLIBRARY",logDebug);
         }
         catch (IOException e) {}
-        return s;
+
 
     }
-    public static String logError(){
-        String s = null;
+    public static void logError(){
+        String logError = null;
 
         try {
             Process process = Runtime.getRuntime().exec("logcat -e");
@@ -41,14 +44,14 @@ public class LogDebugger {
             while ((line = bufferedReader.readLine()) != null) {
                 log.append(line);
             }
-            s =log.toString();
+            logError =log.toString();
+            Log.e("LOGLIBRARY",logError);
         }
         catch (IOException e) {}
-        return s;
 
     }
-    public static String logInfo(){
-        String s = null;
+    public static void logInfo(){
+        String logInfo = null;
 
         try {
             Process process = Runtime.getRuntime().exec("logcat -i");
@@ -60,10 +63,11 @@ public class LogDebugger {
             while ((line = bufferedReader.readLine()) != null) {
                 log.append(line);
             }
-            s =log.toString();
+            logInfo =log.toString();
+            Log.i("LOGLIBRARY",logInfo);
         }
         catch (IOException e) {}
-        return s;
+
 
     }
 }
